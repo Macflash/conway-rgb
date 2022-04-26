@@ -40,7 +40,11 @@ export function CreatNeighbors(board: FloatBoard): Neighbors {
   return neighbors;
 }
 
-export function RunStep(board: FloatBoard): FloatBoard {
+export function RunStep(
+  board: FloatBoard,
+  traditional = true,
+  scale = 3
+): FloatBoard {
   const newBoard: FloatBoard = [];
   const neighbors = CreatNeighbors(board);
 
@@ -59,7 +63,7 @@ export function RunStep(board: FloatBoard): FloatBoard {
         if (n >= 2 && n < 4) {
           // survives
           // newBoard[i][j] = 1; // Behaves like normal conway!
-          newBoard[i][j] = n / 3; // this changes things a lot! but without it.. it's essentially the same. All float values go away.
+          newBoard[i][j] = traditional ? 1 : n / scale; // this changes things a lot! but without it.. it's essentially the same. All float values go away.
         }
       } else {
         if (n >= 3 && n < 4) {
